@@ -1928,6 +1928,14 @@ else:
   static :
     hint("Declaration of " & "kuzu_node_val_to_string" &
         " already exists, not redeclaring")
+when not declared(kuzu_rel_val_get_id_val):
+  proc kuzu_rel_val_get_id_val*(rel_val: ptr kuzu_value_570425816;
+                                out_value: ptr kuzu_value_570425816): kuzu_state_570425864 {.
+      cdecl, importc: "kuzu_rel_val_get_id_val".}
+else:
+  static :
+    hint("Declaration of " & "kuzu_rel_val_get_id_val" &
+        " already exists, not redeclaring")
 when not declared(kuzu_rel_val_get_src_id_val):
   proc kuzu_rel_val_get_src_id_val*(rel_val: ptr kuzu_value_570425816;
                                     out_value: ptr kuzu_value_570425816): kuzu_state_570425864 {.
