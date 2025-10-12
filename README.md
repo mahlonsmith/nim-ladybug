@@ -39,7 +39,8 @@ For more information about Kuzu itself, see its
 
     $ nimble install kuzu
 
-The current version of this library is built for Kuzu v0.11.2.
+The current version of this library is built for Kuzu v0.11.3, which sadly
+seems may have been the final release of kuzudb.  :(
 
 
 ## Usage
