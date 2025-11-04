@@ -5,7 +5,7 @@ import
   std/paths,
   std/re
 
-import kuzu
+import lbug
 
 const NOT_A_DATABASE_PATH = Path( "tmp/not-a-db" )
 
@@ -15,9 +15,9 @@ fh.write( "Hi." )
 fh.close
 
 try:
-    discard newKuzuDatabase( $NOT_A_DATABASE_PATH )
-except KuzuException as err:
-    assert err.msg.contains( re"""Unable to open database: "tmp/not-a-db" Doesn't appear to be a Kuzu file""" )
+    discard newLbugDatabase( $NOT_A_DATABASE_PATH )
+except LbugException as err:
+    assert err.msg.contains( re"""Unable to open database: "tmp/not-a-db" Doesn't appear to be a LadybugDB file""" )
 
 NOT_A_DATABASE_PATH.removeFile()
 

@@ -2,9 +2,9 @@
 
 import
     std/re
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query( """RETURN {test1: 1, test2: "bewts"} AS struct""" )
@@ -15,7 +15,7 @@ assert struct.keys == @["test1", "test2"]
 
 try:
     discard struct["nope"]
-except KuzuIndexError as err:
+except LbugIndexError as err:
     assert err.msg.contains( re"""No such struct key "nope"""" )
 
 

@@ -2,19 +2,19 @@
 
 import
     std/re
-import kuzu
+import ladybug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query( "CREATE NODE TABLE Doop ( id SERIAL, thing STRING, PRIMARY KEY(id) )" )
 
 var p = conn.prepare( "CREATE (d:Doop {thing: $thing})" )
-assert typeOf( p ) is KuzuPreparedStatement
+assert typeOf( p ) is LbugPreparedStatement
 
 try:
-    discard p.execute( (nope: "undefined var in statement!") )
-except KuzuQueryError as err:
+    discard p.execute( (nope: "undefined var in statement!", thing: "yep") )
+except LbugQueryError as err:
     assert err.msg.contains( re"""Parameter nope not found.""" )
 
 

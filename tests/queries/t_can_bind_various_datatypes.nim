@@ -4,9 +4,9 @@ discard """
 output: "0|-222222|128|True|Stuff!|3.344903|239.299923|a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11|2025-03-29"
 """
 
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query( """CREATE NODE TABLE Doop (
@@ -21,7 +21,7 @@ var q = conn.query( """CREATE NODE TABLE Doop (
     date DATE,
     PRIMARY KEY(id)
 )""" )
-assert typeOf( q ) is KuzuQueryResult
+assert typeOf( q ) is LbugQueryResult
 
 
 var stmt = conn.prepare( """CREATE (d:Doop {
@@ -34,7 +34,7 @@ var stmt = conn.prepare( """CREATE (d:Doop {
     uuid: UUID($uuid),
     date: DATE($date)
 })""" )
-assert typeOf( stmt ) is KuzuPreparedStatement
+assert typeOf( stmt ) is LbugPreparedStatement
 
 
 q = stmt.execute((
@@ -47,7 +47,7 @@ q = stmt.execute((
     uuid:   "A0EEBC99-9C0B-4EF8-BB6D-6BB9BD380A11",
     date:   "2025-03-29"
 ))
-assert typeOf( q ) is KuzuQueryResult
+assert typeOf( q ) is LbugQueryResult
 
 
 q = conn.query( "MATCH (d:Doop) RETURN d.*" )

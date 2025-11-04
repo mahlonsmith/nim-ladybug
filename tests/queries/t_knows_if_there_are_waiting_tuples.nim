@@ -1,12 +1,12 @@
 # vim: set et sta sw=4 ts=4 :
 
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query( "CREATE NODE TABLE Doop ( id SERIAL, thing STRING, PRIMARY KEY(id) )" )
-assert typeOf( q ) is KuzuQueryResult
+assert typeOf( q ) is LbugQueryResult
 
 q = conn.query( "MATCH (d:Doop) RETURN d.thing" )
 assert q.num_tuples == 0

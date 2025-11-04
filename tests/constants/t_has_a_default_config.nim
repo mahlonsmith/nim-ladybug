@@ -1,6 +1,6 @@
 # vim: set et sta sw=4 ts=4 :
 
-import kuzu
+import lbug
 
-assert typeOf( KUZU_DEFAULT_CONFIG ) is kuzu_system_config
+assert typeOf( LBUG_DEFAULT_CONFIG ) is lbug_system_config
 

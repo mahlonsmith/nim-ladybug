@@ -4,14 +4,14 @@ discard """
 output: "a\nb\nc\nd\ne\nf\n"
 """
 
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query( "RETURN 'hi'" )
 
-assert typeOf( q ) is KuzuQueryResult
+assert typeOf( q ) is LbugQueryResult
 assert q.sets.len == 0
 
 q = conn.query """
@@ -23,7 +23,7 @@ q = conn.query """
     RETURN "f";
 """
 
-assert typeOf( q ) is KuzuQueryResult
+assert typeOf( q ) is LbugQueryResult
 assert q.sets.len == 5
 
 echo q.getNext

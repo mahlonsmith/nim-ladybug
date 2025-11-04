@@ -2,13 +2,13 @@
 
 import
     std/re
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 try:
     discard conn.query( "NOPE NOPE NOPE" )
-except KuzuQueryError as err:
+except LbugQueryError as err:
     assert err.msg.contains( re"""Parser exception: extraneous input 'NOPE'""" )
 

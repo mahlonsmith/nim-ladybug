@@ -4,19 +4,19 @@ discard """
 output: "d.thing\nCamel\nLampshade\nDelicious Cake\n"
 """
 
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query( "CREATE NODE TABLE Doop ( id SERIAL, thing STRING, PRIMARY KEY(id) )" )
 
 var p = conn.prepare( "CREATE (d:Doop {thing: $thing})" )
-assert typeOf( p ) is KuzuPreparedStatement
+assert typeOf( p ) is LbugPreparedStatement
 
 for thing in @[ "Camel", "Lampshade", "Delicious Cake" ]:
    q = p.execute( (thing: thing) )
-   assert typeOf( q ) is KuzuQueryResult
+   assert typeOf( q ) is LbugQueryResult
 
 # Fixed post v0.8.2:
 #     https://github.com/kuzudb/kuzu/issues/5102

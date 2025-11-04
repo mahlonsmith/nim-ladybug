@@ -1,6 +1,6 @@
 # vim: set et sta sw=4 ts=4 :
 
-import kuzu
+import lbug
 
-assert kuzuGetStorageVersion() >= 36
+assert lbugGetStorageVersion() >= 36
 

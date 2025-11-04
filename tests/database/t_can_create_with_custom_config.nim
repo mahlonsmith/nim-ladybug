@@ -4,12 +4,12 @@ import
     std/files,
     std/paths
 
-import kuzu
+import lbug
 
 const DATABASE_PATH = Path( "tmp/testdb" )
 DATABASE_PATH.removeFile()
 
-var db = newKuzuDatabase( $DATABASE_PATH, kuzuConfig( auto_checkpoint=false ) )
+var db = newLbugDatabase( $DATABASE_PATH, lbugConfig( auto_checkpoint=false ) )
 assert db.path == "tmp/testdb"
 assert db.config.auto_checkpoint == false
 

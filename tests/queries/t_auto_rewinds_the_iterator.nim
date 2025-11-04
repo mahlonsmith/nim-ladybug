@@ -1,8 +1,8 @@
 # vim: set et sta sw=4 ts=4 :
 
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query """

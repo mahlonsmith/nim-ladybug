@@ -1,8 +1,8 @@
 # vim: set et sta sw=4 ts=4 :
 
 import re
-import kuzu
+import lbug
 
-let version = $kuzuGetVersion()
+let version = $lbugGetVersion()
 assert version.contains( re"^\d+\.\d+\.\d+(?:\.\d+)?$" )
 

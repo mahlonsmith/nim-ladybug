@@ -1,7 +1,7 @@
 # vim: set et sta sw=4 ts=4 :
 
 import re
-import kuzu
+import lbug
 
-assert KUZU_VERSION.contains( re"^\d+\.\d+\.\d+$" )
+assert LBUG_VERSION.contains( re"^\d+\.\d+\.\d+$" )
 

@@ -4,9 +4,9 @@ discard """
 output: "Camel\nLampshade\nCamel\nLampshade\n"
 """
 
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 var q = conn.query( "CREATE NODE TABLE Doop ( id SERIAL, thing STRING, PRIMARY KEY(id) )" )

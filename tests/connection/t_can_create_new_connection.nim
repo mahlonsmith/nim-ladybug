@@ -1,10 +1,10 @@
 # vim: set et sta sw=4 ts=4 :
 
-import kuzu
+import lbug
 
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 
 assert db.path == "(in-memory)"
-assert typeOf( db.connect ) is KuzuConnection
+assert typeOf( db.connect ) is LbugConnection
 

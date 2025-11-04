@@ -1,4 +1,11 @@
-# Release History for nim-kuzu
+# Release History for nim-ladybug
+
+---
+## v0.7.0 [2025-11-04] Mahlon E. Smith <mahlon@martini.nu>
+
+Rename the project from Kuzu to Ladybug, following new upstream efforts to keep
+the project going after the Kuzu originator sudden abandonment.
+
 
 ---
 ## v0.6.1 [2025-07-19] Mahlon E. Smith <mahlon@martini.nu>

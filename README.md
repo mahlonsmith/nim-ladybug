@@ -1,18 +1,18 @@
 
-# Nim Kuzu
+# Nim Ladybug
 
 home
-: https://code.martini.nu/mahlon/nim-kuzu
+: https://code.martini.nu/mahlon/nim-ladybug
 
 github_mirror
-: https://github.com/mahlonsmith/nim-kuzu
+: https://github.com/mahlonsmith/nim-ladybug
 
 
 ## Description
 
-This is a Nim binding for the [Kuzu](https://kuzudb.com) graph database library.
+This is a Nim binding for the [LadybugDB](https://ladybugdb.com) graph database library.
 
-Kuzu is an embedded graph database built for query speed and scalability. It is
+Ladybug is an embedded graph database built for query speed and scalability. It is
 optimized for handling complex join-heavy analytical workloads on very large
 graphs, with the following core feature set:
 
@@ -25,22 +25,21 @@ graphs, with the following core feature set:
 - Multi-core query parallelism
 - Serializable ACID transactions
 
-For more information about Kuzu itself, see its
-[documentation](https://docs.kuzudb.com/).
+For more information about Ladybug itself, see its
+[documentation](https://docs.ladybugdb.com/).
 
 
 ## Prerequisites
 
 * A functioning Nim >= 2 installation
-- [KuzuDB](https://kuzudb.com) to be locally installed!
+- [LadybugDB](https://ladybugdb.com) to be locally installed!
 
 
 ## Installation
 
-    $ nimble install kuzu
+    $ nimble install ladybug
 
-The current version of this library is built for Kuzu v0.11.3, which sadly
-seems may have been the final release of kuzudb.  :(
+The current version of this library is built for Ladybug v0.12.0.
 
 
 ## Usage
@@ -53,11 +52,11 @@ You can also find a bunch of working examples in the tests.
 ## Contributing
 
 You can check out the current development source via Git/Jujutsu at its
-[home repo](https://code.martini.nu/mahlon/nim-kuzu), or the
-[project mirror](https://github.com/mahlonsmith/nim-kuzu).
+[home repo](https://code.martini.nu/mahlon/nim-ladybug), or the
+[project mirror](https://github.com/mahlonsmith/nim-ladybug).
 
 After checking out the source, uncomment the development dependencies
-from the `kuzu.nimble` file, and run:
+from the `ladybug.nimble` file, and run:
 
     $ nimble setup
 
@@ -71,4 +70,5 @@ development.
 - Mahlon E. Smith <mahlon@martini.nu>
 
 A note of thanks to @mantielero on Github, who has a Kuzu binding for an early
-KuzuDB (0.4.x) that I found after starting this project.
+KuzuDB (0.4.x) that I found after starting this project (the predecessor to
+LadybugDB.)

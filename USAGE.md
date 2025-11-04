@@ -12,23 +12,27 @@ a lot and it's hard to know where to start.
 
 ## Prior Reading
 
-If you're just starting with Kuzu or graph databases, it's probably a good idea
-to familiarize yourself with the [Kuzu Documentation](https://docs.kuzudb.com/)
-and the [Cypher Language](https://docs.kuzudb.com/tutorials/cypher/).  This
-library won't do much for you by itself without a basic understanding of Kuzu usage.
+If you're just starting with Ladybug or graph databases, it's probably a good idea
+to familiarize yourself with the [Ladybug Documentation](https://docs.ladybugdb.com/)
+and the [Cypher Language](https://docs.ladybugdb.com/tutorials/cypher/).  This
+library won't do much for you by itself without a basic understanding of Ladybug usage.
 
 
 ## Checking Compatibility
 
-This is a wrapper (with some additional niceties) for the system-installed Kuzu
+This is a wrapper (with some additional niceties) for the system-installed Ladybug
 shared library.  As such, the version of this library might not match with what
 you currently have installed.
 
 Check the [README](README.md), the [History](History.md), and the following
-table to ensure you're using the correct version for your Kuzu
-installation. I'll make a modest effort for backwards compatibility while Kuzu
+table to ensure you're using the correct version for your Ladybug
+installation. I'll make a modest effort for backwards compatibility while Ladybug
 is pre 1.0, and in practice, mismatched versions *might* work. Don't count too
 heavily on it.  :-)   Once there's a 1.0, this should be less chaotic.
+
+Ladybug was continued from the KuzuDB project, which was hastily abandoned in
+October of 2025.  Previous versions used a "Kuzu" namespace.
+
 
 | Kuzu Library Version | Nim Kuzu Minimum Version |
 | -------------------- | ------------------------ |
@@ -37,34 +41,49 @@ heavily on it.  :-)   Once there's a 1.0, this should be less chaotic.
 | v0.10.0              | v0.4.0                   |
 | v0.11.0              | v0.5.0                   |
 
-You can use the `kuzuVersionCompatible()` function (along with the
-`kuzuGetVersion()` and the `KUZU_VERSION` constant) to quickly check if things
+
+| Ladybug Library Version | Nim Ladybug Minimum Version |
+| ----------------------- | --------------------------- |
+| v0.12.0                 | v0.7.0                      |
+
+
+You can use the `lbugVersionCompatible()` function (along with the
+`lbugGetVersion()` and the `LBUG_VERSION` constant) to quickly check if things
 are looking right.
 
 ```nim
-import kuzu
+import ladybug
 
-echo KUZU_VERSION            #=> "0.1.0"
-echo kuzuGetVersion()        #=> "0.8.2"
-echo kuzuVersionCompatible() #=> true
+echo LBUG_VERSION            #=> "0.7.0"
+echo lbugGetVersion()        #=> "0.12.0"
+echo lbugVersionCompatible() #=> true
 ```
+
+
+## Namespace
+
+The LadybugDB project internals are all prefixed with `lbug`.  This wrapper
+follows suit.
+
+An exception to that is the import.  You can import "ladybug" or "lbug", it's
+functionally equivalent.
 
 
 ## Connecting to a Database
 
-Just call `newKuzuDatabase()`.  Without an argument (or with an empty string),
+Just call `newLbugDatabase()`.  Without an argument (or with an empty string),
 the database is in-memory.  Any other argument is considered a filesystem path
 -- it will create an empty database if the path is currently non-existent, or
 open an existing database otherwise.
 
 ```nim
 # "db" is in-memory and will evaporate when the process ends.
-var db = newKuzuDatabase()
+var db = newLbugDatabase()
 ```
 
 ```nim
 # "db" is persistent, stored in the file "data.kz".
-var db = newKuzuDatabase("data.kz")
+var db = newLbugDatabase("data.kz")
 ```
 The database path is retained, and can be recalled via `db.path`.
 
@@ -86,19 +105,19 @@ if db.config.enable_compression:
   echo "Yes!"
 ```
 
-You can alter configuration options when connecting by passing a `kuzuConfig`
-object as the second argument to `newKuzuDatabase()`:
+You can alter configuration options when connecting by passing a `lbugConfig`
+object as the second argument to `newLbugDatabase()`:
 
 ```nim
 # Open a readonly handle.
-var db = newKuzuDatabase( "data.kz", kuzuConfig( read_only=true ) )
+var db = newLbugDatabase( "data.kz", lbugConfig( read_only=true ) )
 ```
 
 ### The Connection
 
 All interaction with the database is performed via a connection object.  There
 are limitations to database handles and connection objects -- see the
-[Kuzu Concurrency](https://docs.kuzudb.com/concurrency/) docs for details!
+[Lbug Concurrency](https://docs.ladybugdb.com/concurrency/) docs for details!
 
 Call `connect` on an open database handle to create a new connection:
 
@@ -121,10 +140,10 @@ conn.queryInterrupt()
 
 You can perform a basic query via the appropriately named `query()` function on
 the connection. Via this method, queries are run immediately.  A
-`KuzuQueryResult` is returned - this is the object you'll be interacting with to
+`LbugQueryResult` is returned - this is the object you'll be interacting with to
 see results.
 
-A `KuzuQueryResult` can be turned into a string to quickly see the column
+A `LbugQueryResult` can be turned into a string to quickly see the column
 headers and all tuple results:
 
 ```nim
@@ -154,7 +173,7 @@ echo res.execution_time #=> 1.624
 assert res.column_names == @["hi", "pin", "list"]
 
 # Return the column data types as a sequence.
-assert res.column_types == @[KUZU_STRING, KUZU_INT64, KUZU_LIST]
+assert res.column_types == @[LBUG_STRING, LBUG_INT64, LBUG_LIST]
 ```
 
 ### Prepared Statements
@@ -172,7 +191,7 @@ RETURN
   [1,2,3] AS list
 """
 
-# This returns a KuzuQueryResult, just like `conn.query()`.
+# This returns a LbugQueryResult, just like `conn.query()`.
 var res = stmt.execute()
 ```
 
@@ -198,13 +217,13 @@ echo $res #=>
 #### Type Conversion
 
 When binding variables to a prepared statement, most Nim types are automatically
-converted to their respective Kuzu types.
+converted to their respective Ladybug types.
 
 ```nim
 var stmt = conn.prepare( """RETURN $num AS num""" )
 var res  = stmt.execute( (num: 12) )
 
-assert res.column_types[0] == KUZU_INT32
+assert res.column_types[0] == LBUG_INT32
 ```
 
 This might not necessarily be what you want - sometimes you'd rather be strict
@@ -215,37 +234,37 @@ You can use [integer type suffixes](https://nim-lang.org/docs/manual.html#lexica
 
 ```nim
 var stmt = conn.prepare( """RETURN $num AS num""" )
-var res: KuzuQueryResult
+var res: LbugQueryResult
 
 res = stmt.execute( (num: 12'u64) )
-assert res.column_types[0] == KUZU_UINT64
+assert res.column_types[0] == LBUG_UINT64
 
 res = stmt.execute( (num: 12.float) )
-assert res.column_types[0] == KUZU_DOUBLE
+assert res.column_types[0] == LBUG_DOUBLE
 ```
 
-#### Kuzu Specific Types
+#### Ladybug Specific Types
 
 In the example above, you may have noticed the `LIST_CREATION($list)` in the
 prepared query, and that we passed a string `1,2,3` as the `$list` parameter.
 
-This is a useful way to easily use most Kuzu types without needing corresponding
+This is a useful way to easily use most Ladybug types without needing corresponding
 Nim ones -- if you're inserting into a table that is using a custom type, you
 can cast it using the query itself during insertion!
 
-This has the additional advantage of letting Kuzu error check the validity of
+This has the additional advantage of letting Ladybug error check the validity of
 the content, and it works with the majority of types.
 
 An extended example:
 
 ```nim
 import std/sequtils
-import kuzu
+import lbug
 
-var db   = newKuzuDatabase()
+var db   = newLbugDatabase()
 var conn = db.connect
 
-var res: KuzuQueryResult
+var res: LbugQueryResult
 
 # Create a node table.
 #
@@ -277,7 +296,7 @@ CREATE (e:Example {
 })
 """
 
-# Add a node row that contains specific Kuzu types.
+# Add a node row that contains specific Ladybug types.
 #
 res = stmt.execute((
   num: 2,
@@ -295,26 +314,26 @@ echo $res #=>
 # e.id|e.num|e.done|e.comment|e.karma|e.thing|e.created|e.activity
 # 0|2|True|Types!|16.700000|e0e7232e-bec9-4625-9822-9d1a31ea6f93|2025-03-29|2025-03-29 00:00:00
 
-# Show column names and their Kuzu types.
+# Show column names and their Ladybug types.
 for pair in res.column_names.zip( res.column_types ):
   echo pair #=>
-  # ("e.id", KUZU_SERIAL)
-  # ("e.num", KUZU_UINT8)
-  # ("e.done", KUZU_BOOL)
-  # ("e.comment", KUZU_STRING)
-  # ("e.karma", KUZU_DOUBLE)
-  # ("e.thing", KUZU_UUID)
-  # ("e.created", KUZU_DATE)
-  # ("e.activity", KUZU_TIMESTAMP)
+  # ("e.id", LBUG_SERIAL)
+  # ("e.num", LBUG_UINT8)
+  # ("e.done", LBUG_BOOL)
+  # ("e.comment", LBUG_STRING)
+  # ("e.karma", LBUG_DOUBLE)
+  # ("e.thing", LBUG_UUID)
+  # ("e.created", LBUG_DATE)
+  # ("e.activity", LBUG_TIMESTAMP)
 ```
 
 ## Reading Results
 
-So far we've just been showing values by converting the entire `KuzuQueryResult`
+So far we've just been showing values by converting the entire `LbugQueryResult`
 to a string.  Convenient for quick examples and debugging, but not much else.
 
-A `KuzuQueryResult` is an iterator. You can use regular Nim functions that yield
-each `KuzuFlatTuple` -- essentially, each row that was returned in a result set.
+A `LbugQueryResult` is an iterator. You can use regular Nim functions that yield
+each `LbugFlatTuple` -- essentially, each row that was returned in a result set.
 
 ```nim
 var res = conn.query """
@@ -323,7 +342,7 @@ var res = conn.query """
   RETURN items, thing
 """
 
-# KuzuFlatTuple can be stringified just like the result set.
+# LbugFlatTuple can be stringified just like the result set.
 for row in res:
   echo row #=>
   # 1|thing
@@ -333,7 +352,7 @@ for row in res:
 
 Once iteration has reached the end, it is automatically rewound for reuse.
 
-You can manually get the next `KuzuFlatTuple` via `getNext()`.  Calling
+You can manually get the next `LbugFlatTuple` via `getNext()`.  Calling
 `getNext()` after the last row results in an error.  Use `hasNext()` to check
 before calling.
 
@@ -350,23 +369,23 @@ if res.hasNext:
 
 echo res.getNext #=> 2
 echo res.getNext #=> 3
-echo res.getNext #=> KuzuIterationError exception!
+echo res.getNext #=> LbugIterationError exception!
 ```
 
-Manually rewind the `KuzuQueryResult` via `rewind()`.
+Manually rewind the `LbugQueryResult` via `rewind()`.
 
 
 ## Multiple Query Results
 
 A query can potentially return any number of separate statements.  In the case
 of more potential `RETURN`s, the query will only contain the first.  Iterate
-over linked `KuzuQueryResult` objects with the `sets()` iterator to retreive the
+over linked `LbugQueryResult` objects with the `sets()` iterator to retreive the
 remaining:
 
 ```nim
-import kuzu
+import lbug
 
-let db = newKuzuDatabase()
+let db = newLbugDatabase()
 let conn = db.connect
 
 let query = conn.query """
@@ -400,8 +419,8 @@ for set in query.sets:
 
 ## Working with Values
 
-A `KuzuFlatTuple` contains the entire row.  You can index a value at its column
-position, returning a `KuzuValue`.
+A `LbugFlatTuple` contains the entire row.  You can index a value at its column
+position, returning a `LbugValue`.
 
 ```nim
 var res = conn.query """
@@ -419,27 +438,27 @@ var row = res.getNext
 for idx in ( 0 .. res.num_columns-1 ):
   var value = row[idx]
   echo res.column_names[idx], ": ", value, " (", value.kind, ")" #=>
-  # num: 1 (KUZU_INT64)
-  # done: True (KUZU_BOOL)
-  # comment: A comment (KUZU_STRING)
-  # karma: 12.840000 (KUZU_DOUBLE)
-  # thing: b41deae0-dddf-430b-981d-3fb93823e495 (KUZU_UUID)
-  # created: 2025-03-29 (KUZU_DATE)
+  # num: 1 (LBUG_INT64)
+  # done: True (LBUG_BOOL)
+  # comment: A comment (LBUG_STRING)
+  # karma: 12.840000 (LBUG_DOUBLE)
+  # thing: b41deae0-dddf-430b-981d-3fb93823e495 (LBUG_UUID)
+  # created: 2025-03-29 (LBUG_DATE)
 ```
 
 ### Types
 
-A `KuzuValue` can always be stringified, irrespective of its Kuzu type.  You can
+A `LbugValue` can always be stringified, irrespective of its Lbug type.  You can
 check what type it is via the 'kind' property.
 
 ```nim
 var res = conn.query """RETURN "hello""""
 var value = res.getNext[0]
 
-assert value.kind == KUZU_STRING
+assert value.kind == LBUG_STRING
 ```
 
-A `KuzuValue` has conversion methods for Nim base types.  You'll likely want to
+A `LbugValue` has conversion methods for Nim base types.  You'll likely want to
 convert it for regular Nim usage:
 
 ```nim
@@ -455,12 +474,12 @@ assert value.toInt64 + 1 == 2561
 
 ### Lists
 
-A `KuzuValue` of type `KUZU_LIST` can be converted to a Nim sequence of
-`KuzuValues` with the `toList()` function:
+A `LbugValue` of type `LBUG_LIST` can be converted to a Nim sequence of
+`LbugValues` with the `toList()` function:
 
 ```nim
 import std/sequtils
-import kuzu
+import lbug
 
 var res = conn.query """
 RETURN [10, 20, 30]
@@ -471,16 +490,16 @@ var value = res.getNext[0]
 var list = value.toList
 echo list #=> @[10,20,30]
 
-echo list.map( func(v:KuzuValue): int = v.toInt64 * 10 ) #=> @[100,200,300]
+echo list.map( func(v:LbugValue): int = v.toInt64 * 10 ) #=> @[100,200,300]
 ```
 
 
 ### Struct-like Objects
 
-Various Kuzu types can act like a struct - this includes `KUZU_NODE`,
-`KUZU_REL`, and of course an explicit `KUZU_STRUCT` itself, among others.
+Various Ladybug types can act like a struct - this includes `LBUG_NODE`,
+`LBUG_REL`, and of course an explicit `LBUG_STRUCT` itself, among others.
 
-Convert a `KuzuValue` to a `KuzuStructValue` with `toStruct()`.  For
+Convert a `LbugValue` to a `LbugStructValue` with `toStruct()`.  For
 convenience, this is also aliased to `toNode()` and `toRel()`.
 
 Once converted, you can access struct values by passing the key name to `[]`:
@@ -503,9 +522,9 @@ Here's a more elaborate example, following a node path:
 import
   std/sequtils,
   std/strformat
-import kuzu
+import lbug
 
-var db   = newKuzuDatabase()
+var db   = newLbugDatabase()
 var conn = db.connect
 
 var res = conn.query """
@@ -540,7 +559,7 @@ res = conn.query """
 #
 for row in res:
   var since  = row[0]
-  var people = row[1].toList.map( proc(p:KuzuValue):KuzuStructValue = p.toNode )
+  var people = row[1].toList.map( proc(p:LbugValue):LbugStructValue = p.toNode )
   echo &"""{people[0]["name"]} has known {people[1]["name"]} since {since}.""" #=>
   # Bob has known Bruce since 2003.
   # Bob has known Alice since 2009.
@@ -550,7 +569,7 @@ for row in res:
 
 ### Blobs
 
-Kuzu can store small chunks of opaque binary data.  For these BLOB columns,
+Ladybug can store small chunks of opaque binary data.  For these BLOB columns,
 using `toBlob` will return the raw sequence of bytes.
 
 ```nim
