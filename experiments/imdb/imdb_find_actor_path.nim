@@ -17,9 +17,9 @@ import
     std/os,
     std/sequtils,
     std/strformat
-import kuzu
+import lbug
 
-const DB = "imdb.kz"
+const DB = "imdb.db"
 const DOT = "imdb-results.dot"
 
 if not DB.fileExists:
@@ -31,13 +31,13 @@ if paramCount() < 2:
     echo "I require 2 actor names, in quotes."
     quit 1
 
-var stmt: KuzuPreparedStatement
-var res:  KuzuQueryResult
+var stmt: LbugPreparedStatement
+var res:  LbugQueryResult
 
 var fromActor = paramStr(1)
 var toActor   = paramStr(2)
 
-var db = newKuzuDatabase( DB, kuzuConfig(read_only=true) )
+var db = newLbugDatabase( DB, lbugConfig(read_only=true) )
 var conn = db.connect
 
 echo "Database opened: ", db.path

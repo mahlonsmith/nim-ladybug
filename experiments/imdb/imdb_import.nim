@@ -1,7 +1,7 @@
 # vim: set et sta sw=4 ts=4 :
 #
 # Fetches movie and actor data from IMDB and converts it
-# to CSV, then imports into a Kuzu graph database.
+# to CSV, then imports into a Ladybug graph database.
 #
 # Only cares about actors in movies!  Things like writers,
 # directors, and TV shows are intentionally omitted.
@@ -18,9 +18,9 @@ import
     std/strformat,
     std/strutils,
     zip/gzipfiles,
-    kuzu
+    lbug
 
-const DB     = "imdb.kz"
+const DB     = "imdb.db"
 const SOURCE = "https://datasets.imdbws.com"
 const FILES  = @[ "name.basics", "title.basics", "title.principals" ]
 
@@ -126,11 +126,11 @@ known_file.close()
 
 
 #
-# Ok, now import into a fresh kuzu database.
+# Ok, now import into a fresh ladybug database.
 #
 
 if not DB.dirExists:
-    var db   = newKuzuDatabase( DB )
+    var db   = newLbugDatabase( DB )
     var conn = db.connect()
     var duration = 0
 

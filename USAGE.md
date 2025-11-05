@@ -82,13 +82,13 @@ var db = newLbugDatabase()
 ```
 
 ```nim
-# "db" is persistent, stored in the file "data.kz".
-var db = newLbugDatabase("data.kz")
+# "db" is persistent, stored in the file "data.db".
+var db = newLbugDatabase("data.db")
 ```
 The database path is retained, and can be recalled via `db.path`.
 
 ```nim
-db.path #=> "data.kz"
+db.path #=> "data.db"
 ```
 
 ### Database Configuration
@@ -110,7 +110,7 @@ object as the second argument to `newLbugDatabase()`:
 
 ```nim
 # Open a readonly handle.
-var db = newLbugDatabase( "data.kz", lbugConfig( read_only=true ) )
+var db = newLbugDatabase( "data.db", lbugConfig( read_only=true ) )
 ```
 
 ### The Connection
