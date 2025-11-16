@@ -40,7 +40,7 @@ else:
         " already exists, not redeclaring")
 type
   struct_ArrowSchema_570425781 {.pure, inheritable, bycopy.} = object
-    format*: cstring         ## Generated based on /usr/local/include/lbug.h:64:8
+    format*: cstring         ## Generated based on /usr/include/lbug.h:64:8
     name*: cstring
     metadata*: cstring
     flags*: int64
@@ -50,7 +50,7 @@ type
     release*: proc (a0: ptr struct_ArrowSchema_570425782): void {.cdecl.}
     private_data*: pointer
   struct_ArrowArray_570425783 {.pure, inheritable, bycopy.} = object
-    length*: int64           ## Generated based on /usr/local/include/lbug.h:80:8
+    length*: int64           ## Generated based on /usr/include/lbug.h:80:8
     null_count*: int64
     offset*: int64
     n_buffers*: int64
@@ -61,75 +61,75 @@ type
     release*: proc (a0: ptr struct_ArrowArray_570425784): void {.cdecl.}
     private_data*: pointer
   struct_lbug_system_config_570425785 {.pure, inheritable, bycopy.} = object
-    buffer_pool_size*: uint64 ## Generated based on /usr/local/include/lbug.h:112:9
+    buffer_pool_size*: uint64 ## Generated based on /usr/include/lbug.h:112:9
     max_num_threads*: uint64
     enable_compression*: bool
     read_only*: bool
     max_db_size*: uint64
     auto_checkpoint*: bool
     checkpoint_threshold*: uint64
-  lbug_system_config_570425787 = struct_lbug_system_config_570425786 ## Generated based on /usr/local/include/lbug.h:141:3
+  lbug_system_config_570425787 = struct_lbug_system_config_570425786 ## Generated based on /usr/include/lbug.h:141:3
   struct_lbug_database_570425789 {.pure, inheritable, bycopy.} = object
-    internal_database*: pointer ## Generated based on /usr/local/include/lbug.h:146:9
-  lbug_database_570425791 = struct_lbug_database_570425790 ## Generated based on /usr/local/include/lbug.h:148:3
+    internal_database*: pointer ## Generated based on /usr/include/lbug.h:146:9
+  lbug_database_570425791 = struct_lbug_database_570425790 ## Generated based on /usr/include/lbug.h:148:3
   struct_lbug_connection_570425793 {.pure, inheritable, bycopy.} = object
-    internal_connection*: pointer ## Generated based on /usr/local/include/lbug.h:155:9
-  lbug_connection_570425795 = struct_lbug_connection_570425794 ## Generated based on /usr/local/include/lbug.h:157:3
+    internal_connection*: pointer ## Generated based on /usr/include/lbug.h:155:9
+  lbug_connection_570425795 = struct_lbug_connection_570425794 ## Generated based on /usr/include/lbug.h:157:3
   struct_lbug_prepared_statement_570425797 {.pure, inheritable, bycopy.} = object
-    internal_prepared_statement*: pointer ## Generated based on /usr/local/include/lbug.h:163:9
+    internal_prepared_statement*: pointer ## Generated based on /usr/include/lbug.h:163:9
     internal_bound_values*: pointer
-  lbug_prepared_statement_570425799 = struct_lbug_prepared_statement_570425798 ## Generated based on /usr/local/include/lbug.h:166:3
+  lbug_prepared_statement_570425799 = struct_lbug_prepared_statement_570425798 ## Generated based on /usr/include/lbug.h:166:3
   struct_lbug_query_result_570425801 {.pure, inheritable, bycopy.} = object
-    internal_query_result*: pointer ## Generated based on /usr/local/include/lbug.h:171:9
+    internal_query_result*: pointer ## Generated based on /usr/include/lbug.h:171:9
     internal_is_owned_by_cpp*: bool
-  lbug_query_result_570425803 = struct_lbug_query_result_570425802 ## Generated based on /usr/local/include/lbug.h:174:3
+  lbug_query_result_570425803 = struct_lbug_query_result_570425802 ## Generated based on /usr/include/lbug.h:174:3
   struct_lbug_flat_tuple_570425805 {.pure, inheritable, bycopy.} = object
-    internal_flat_tuple*: pointer ## Generated based on /usr/local/include/lbug.h:179:9
+    internal_flat_tuple*: pointer ## Generated based on /usr/include/lbug.h:179:9
     internal_is_owned_by_cpp*: bool
-  lbug_flat_tuple_570425807 = struct_lbug_flat_tuple_570425806 ## Generated based on /usr/local/include/lbug.h:182:3
+  lbug_flat_tuple_570425807 = struct_lbug_flat_tuple_570425806 ## Generated based on /usr/include/lbug.h:182:3
   struct_lbug_logical_type_570425809 {.pure, inheritable, bycopy.} = object
-    internal_data_type*: pointer ## Generated based on /usr/local/include/lbug.h:187:9
-  lbug_logical_type_570425811 = struct_lbug_logical_type_570425810 ## Generated based on /usr/local/include/lbug.h:189:3
+    internal_data_type*: pointer ## Generated based on /usr/include/lbug.h:187:9
+  lbug_logical_type_570425811 = struct_lbug_logical_type_570425810 ## Generated based on /usr/include/lbug.h:189:3
   struct_lbug_value_570425813 {.pure, inheritable, bycopy.} = object
-    internal_value*: pointer ## Generated based on /usr/local/include/lbug.h:194:9
+    internal_value*: pointer ## Generated based on /usr/include/lbug.h:194:9
     internal_is_owned_by_cpp*: bool
-  lbug_value_570425815 = struct_lbug_value_570425814 ## Generated based on /usr/local/include/lbug.h:197:3
+  lbug_value_570425815 = struct_lbug_value_570425814 ## Generated based on /usr/include/lbug.h:197:3
   struct_lbug_internal_id_t_570425817 {.pure, inheritable, bycopy.} = object
-    table_id*: uint64        ## Generated based on /usr/local/include/lbug.h:202:9
+    table_id*: uint64        ## Generated based on /usr/include/lbug.h:202:9
     offset*: uint64
-  lbug_internal_id_t_570425819 = struct_lbug_internal_id_t_570425818 ## Generated based on /usr/local/include/lbug.h:205:3
+  lbug_internal_id_t_570425819 = struct_lbug_internal_id_t_570425818 ## Generated based on /usr/include/lbug.h:205:3
   struct_lbug_date_t_570425821 {.pure, inheritable, bycopy.} = object
-    days*: int32             ## Generated based on /usr/local/include/lbug.h:210:9
-  lbug_date_t_570425823 = struct_lbug_date_t_570425822 ## Generated based on /usr/local/include/lbug.h:213:3
+    days*: int32             ## Generated based on /usr/include/lbug.h:210:9
+  lbug_date_t_570425823 = struct_lbug_date_t_570425822 ## Generated based on /usr/include/lbug.h:213:3
   struct_lbug_timestamp_ns_t_570425825 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/local/include/lbug.h:219:9
-  lbug_timestamp_ns_t_570425827 = struct_lbug_timestamp_ns_t_570425826 ## Generated based on /usr/local/include/lbug.h:222:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:219:9
+  lbug_timestamp_ns_t_570425827 = struct_lbug_timestamp_ns_t_570425826 ## Generated based on /usr/include/lbug.h:222:3
   struct_lbug_timestamp_ms_t_570425829 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/local/include/lbug.h:228:9
-  lbug_timestamp_ms_t_570425831 = struct_lbug_timestamp_ms_t_570425830 ## Generated based on /usr/local/include/lbug.h:231:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:228:9
+  lbug_timestamp_ms_t_570425831 = struct_lbug_timestamp_ms_t_570425830 ## Generated based on /usr/include/lbug.h:231:3
   struct_lbug_timestamp_sec_t_570425833 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/local/include/lbug.h:237:9
-  lbug_timestamp_sec_t_570425835 = struct_lbug_timestamp_sec_t_570425834 ## Generated based on /usr/local/include/lbug.h:240:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:237:9
+  lbug_timestamp_sec_t_570425835 = struct_lbug_timestamp_sec_t_570425834 ## Generated based on /usr/include/lbug.h:240:3
   struct_lbug_timestamp_tz_t_570425837 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/local/include/lbug.h:246:9
-  lbug_timestamp_tz_t_570425839 = struct_lbug_timestamp_tz_t_570425838 ## Generated based on /usr/local/include/lbug.h:249:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:246:9
+  lbug_timestamp_tz_t_570425839 = struct_lbug_timestamp_tz_t_570425838 ## Generated based on /usr/include/lbug.h:249:3
   struct_lbug_timestamp_t_570425841 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/local/include/lbug.h:255:9
-  lbug_timestamp_t_570425843 = struct_lbug_timestamp_t_570425842 ## Generated based on /usr/local/include/lbug.h:258:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:255:9
+  lbug_timestamp_t_570425843 = struct_lbug_timestamp_t_570425842 ## Generated based on /usr/include/lbug.h:258:3
   struct_lbug_interval_t_570425845 {.pure, inheritable, bycopy.} = object
-    months*: int32           ## Generated based on /usr/local/include/lbug.h:263:9
+    months*: int32           ## Generated based on /usr/include/lbug.h:263:9
     days*: int32
     micros*: int64
-  lbug_interval_t_570425847 = struct_lbug_interval_t_570425846 ## Generated based on /usr/local/include/lbug.h:267:3
+  lbug_interval_t_570425847 = struct_lbug_interval_t_570425846 ## Generated based on /usr/include/lbug.h:267:3
   struct_lbug_query_summary_570425849 {.pure, inheritable, bycopy.} = object
-    internal_query_summary*: pointer ## Generated based on /usr/local/include/lbug.h:273:9
-  lbug_query_summary_570425851 = struct_lbug_query_summary_570425850 ## Generated based on /usr/local/include/lbug.h:275:3
+    internal_query_summary*: pointer ## Generated based on /usr/include/lbug.h:273:9
+  lbug_query_summary_570425851 = struct_lbug_query_summary_570425850 ## Generated based on /usr/include/lbug.h:275:3
   struct_lbug_int128_t_570425853 {.pure, inheritable, bycopy.} = object
-    low*: uint64             ## Generated based on /usr/local/include/lbug.h:277:9
+    low*: uint64             ## Generated based on /usr/include/lbug.h:277:9
     high*: int64
-  lbug_int128_t_570425855 = struct_lbug_int128_t_570425854 ## Generated based on /usr/local/include/lbug.h:280:3
-  lbug_data_type_id_570425859 = enum_lbug_data_type_id_570425858 ## Generated based on /usr/local/include/lbug.h:325:3
-  lbug_state_570425863 = enum_lbug_state_570425862 ## Generated based on /usr/local/include/lbug.h:330:49
+  lbug_int128_t_570425855 = struct_lbug_int128_t_570425854 ## Generated based on /usr/include/lbug.h:280:3
+  lbug_data_type_id_570425859 = enum_lbug_data_type_id_570425858 ## Generated based on /usr/include/lbug.h:325:3
+  lbug_state_570425863 = enum_lbug_state_570425862 ## Generated based on /usr/include/lbug.h:330:49
   struct_tm_570425865 {.pure, inheritable, bycopy.} = object
     tm_sec*: cint            ## Generated based on /usr/include/bits/types/struct_tm.h:7:8
     tm_min*: cint
@@ -803,26 +803,26 @@ else:
 when not declared(LBUG_API):
   when LBUG_HELPER_DLL_IMPORT is typedesc:
     type
-      LBUG_API* = LBUG_HELPER_DLL_IMPORT ## Generated based on /usr/local/include/lbug.h:33:9
+      LBUG_API* = LBUG_HELPER_DLL_IMPORT ## Generated based on /usr/include/lbug.h:33:9
   else:
     when LBUG_HELPER_DLL_IMPORT is static:
       const
-        LBUG_API* = LBUG_HELPER_DLL_IMPORT ## Generated based on /usr/local/include/lbug.h:33:9
+        LBUG_API* = LBUG_HELPER_DLL_IMPORT ## Generated based on /usr/include/lbug.h:33:9
     else:
-      let LBUG_API* = LBUG_HELPER_DLL_IMPORT ## Generated based on /usr/local/include/lbug.h:33:9
+      let LBUG_API* = LBUG_HELPER_DLL_IMPORT ## Generated based on /usr/include/lbug.h:33:9
 else:
   static :
     hint("Declaration of " & "LBUG_API" & " already exists, not redeclaring")
 when not declared(LBUG_DEPRECATED):
   when LBUG_HELPER_DEPRECATED is typedesc:
     type
-      LBUG_DEPRECATED* = LBUG_HELPER_DEPRECATED ## Generated based on /usr/local/include/lbug.h:40:9
+      LBUG_DEPRECATED* = LBUG_HELPER_DEPRECATED ## Generated based on /usr/include/lbug.h:40:9
   else:
     when LBUG_HELPER_DEPRECATED is static:
       const
-        LBUG_DEPRECATED* = LBUG_HELPER_DEPRECATED ## Generated based on /usr/local/include/lbug.h:40:9
+        LBUG_DEPRECATED* = LBUG_HELPER_DEPRECATED ## Generated based on /usr/include/lbug.h:40:9
     else:
-      let LBUG_DEPRECATED* = LBUG_HELPER_DEPRECATED ## Generated based on /usr/local/include/lbug.h:40:9
+      let LBUG_DEPRECATED* = LBUG_HELPER_DEPRECATED ## Generated based on /usr/include/lbug.h:40:9
 else:
   static :
     hint("Declaration of " & "LBUG_DEPRECATED" &
@@ -830,9 +830,9 @@ else:
 when not declared(ARROW_FLAG_DICTIONARY_ORDERED):
   when 1 is static:
     const
-      ARROW_FLAG_DICTIONARY_ORDERED* = 1 ## Generated based on /usr/local/include/lbug.h:60:9
+      ARROW_FLAG_DICTIONARY_ORDERED* = 1 ## Generated based on /usr/include/lbug.h:60:9
   else:
-    let ARROW_FLAG_DICTIONARY_ORDERED* = 1 ## Generated based on /usr/local/include/lbug.h:60:9
+    let ARROW_FLAG_DICTIONARY_ORDERED* = 1 ## Generated based on /usr/include/lbug.h:60:9
 else:
   static :
     hint("Declaration of " & "ARROW_FLAG_DICTIONARY_ORDERED" &
@@ -840,9 +840,9 @@ else:
 when not declared(ARROW_FLAG_NULLABLE):
   when 2 is static:
     const
-      ARROW_FLAG_NULLABLE* = 2 ## Generated based on /usr/local/include/lbug.h:61:9
+      ARROW_FLAG_NULLABLE* = 2 ## Generated based on /usr/include/lbug.h:61:9
   else:
-    let ARROW_FLAG_NULLABLE* = 2 ## Generated based on /usr/local/include/lbug.h:61:9
+    let ARROW_FLAG_NULLABLE* = 2 ## Generated based on /usr/include/lbug.h:61:9
 else:
   static :
     hint("Declaration of " & "ARROW_FLAG_NULLABLE" &
@@ -850,9 +850,9 @@ else:
 when not declared(ARROW_FLAG_MAP_KEYS_SORTED):
   when 4 is static:
     const
-      ARROW_FLAG_MAP_KEYS_SORTED* = 4 ## Generated based on /usr/local/include/lbug.h:62:9
+      ARROW_FLAG_MAP_KEYS_SORTED* = 4 ## Generated based on /usr/include/lbug.h:62:9
   else:
-    let ARROW_FLAG_MAP_KEYS_SORTED* = 4 ## Generated based on /usr/local/include/lbug.h:62:9
+    let ARROW_FLAG_MAP_KEYS_SORTED* = 4 ## Generated based on /usr/include/lbug.h:62:9
 else:
   static :
     hint("Declaration of " & "ARROW_FLAG_MAP_KEYS_SORTED" &
@@ -1859,7 +1859,7 @@ else:
         " already exists, not redeclaring")
 when not declared(lbug_value_get_blob):
   proc lbug_value_get_blob*(value: ptr lbug_value_570425816;
-                            out_result: ptr ptr uint8): lbug_state_570425864 {.
+                            out_result: ptr ptr uint8; out_length: ptr uint64): lbug_state_570425864 {.
       cdecl, importc: "lbug_value_get_blob".}
 else:
   static :

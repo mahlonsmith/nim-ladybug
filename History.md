@@ -1,6 +1,13 @@
 # Release History for nim-ladybug
 
 ---
+## v0.8.0 [2025-11-15] Mahlon E. Smith <mahlon@martini.nu>
+
+Update to Ladybug v0.12.2.  No practical changes, some internal
+modifications to how the blob API functions.
+
+
+---
 ## v0.7.0 [2025-11-04] Mahlon E. Smith <mahlon@martini.nu>
 
 Rename the project from Kuzu to Ladybug, following new upstream efforts to keep

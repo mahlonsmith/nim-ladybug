@@ -131,9 +131,10 @@ func toBlob*( value: LbugValue ): seq[ byte ] =
 
     result = @[]
     var data: ptr byte
-    assert( lbug_value_get_blob( addr value.handle, addr data ) == LbugSuccess )
+    var len: uint64
+    assert( lbug_value_get_blob( addr value.handle, addr data, addr len ) == LbugSuccess )
 
-    for idx in 0 .. BLOB_MAXSIZE:
+    for idx in 0 .. len-1:
         var byte = cast[ptr byte](cast[uint](data) + idx.uint)[]
         if byte == 0: break
         result.add( byte )
@@ -193,5 +194,6 @@ func `[]`*( struct: LbugStructValue, key: string ): LbugValue =
 func `$`*( struct: LbugStructValue ): string =
     ## Stringify a struct value.
     result = $lbug_value_to_string( addr struct.value.handle )
+
 
 

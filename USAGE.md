@@ -45,6 +45,7 @@ October of 2025.  Previous versions used a "Kuzu" namespace.
 | Ladybug Library Version | Nim Ladybug Minimum Version |
 | ----------------------- | --------------------------- |
 | v0.12.0                 | v0.7.0                      |
+| v0.12.2                 | v0.8.0                      |
 
 
 You can use the `lbugVersionCompatible()` function (along with the
@@ -569,8 +570,8 @@ for row in res:
 
 ### Blobs
 
-Ladybug can store small chunks of opaque binary data.  For these BLOB columns,
-using `toBlob` will return the raw sequence of bytes.
+Ladybug can store chunks of opaque binary data.  For these BLOB columns, using
+`toBlob` will return the raw sequence of bytes.
 
 ```nim
 var q = conn.query """
