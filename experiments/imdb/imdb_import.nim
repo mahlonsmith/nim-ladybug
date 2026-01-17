@@ -17,6 +17,7 @@ import
     std/sequtils,
     std/strformat,
     std/strutils,
+    std/times,
     zip/gzipfiles,
     lbug
 
@@ -135,6 +136,7 @@ if not DB.dirExists:
     var duration = 0
 
     for schema in @[
+        """CREATE NODE TABLE Meta (id SERIAL PRIMARY KEY, createdAt DATE)""",
         """CREATE NODE TABLE Actor (actorId INT64, name STRING, birthYear UINT16, deathYear UINT16, PRIMARY KEY (actorId))""",
         """CREATE NODE TABLE Movie (movieId INT64, title STRING, year UINT16, durationMins INT, PRIMARY KEY (movieId))""",
         """CREATE REL TABLE ActedIn (FROM Actor TO Movie)"""
@@ -155,6 +157,8 @@ if not DB.dirExists:
         var q = conn.query( dataload )
         duration += q.execution_time.int
 
+    let date = now().format("yyyy-MM-dd")
+    discard conn.query &"""CREATE ( m:Meta {{createdAt: "{date}"}} )"""
     echo &"Imported data in {duration / 1000}s."
     echo "Done!"
 
