@@ -159,6 +159,10 @@ if not DB.dirExists:
 
     let date = now().format("yyyy-MM-dd")
     discard conn.query &"""CREATE ( m:Meta {{createdAt: "{date}"}} )"""
+
+    # Full text index for actor names.
+    discard conn.query "INSTALL FTS; LOAD EXTENSION FTS;"
+    discard conn.query "CALL CREATE_FTS_INDEX( 'Actor', 'actor_name_idx', ['name'] )"
     echo &"Imported data in {duration / 1000}s."
     echo "Done!"
 

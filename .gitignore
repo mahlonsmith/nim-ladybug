@@ -11,3 +11,4 @@ tests/*
 !tests/*/t_*.nim
 tmp/*
 
+nimble.develop
