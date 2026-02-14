@@ -47,6 +47,7 @@ October of 2025.  Previous versions used a "Kuzu" namespace.
 | v0.12.0                 | v0.7.0                      |
 | v0.12.2                 | v0.8.0                      |
 | v0.13.0                 | v0.8.1                      |
+| v0.14.1                 | v0.8.2                      |
 
 
 You can use the `lbugVersionCompatible()` function (along with the

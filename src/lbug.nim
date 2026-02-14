@@ -7,10 +7,10 @@ when defined( futharkWrap ):
     import futhark, os
 
     importc:
-        outputPath currentSourcePath.parentDir / "lbug" / "0.13.0.nim"
+        outputPath currentSourcePath.parentDir / "lbug" / "0.14.1.nim"
         "lbug.h"
 else:
-    include "lbug/0.13.0.nim"
+    include "lbug/0.14.1.nim"
 
 import
     std/files,
