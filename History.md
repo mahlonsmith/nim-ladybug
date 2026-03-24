@@ -1,6 +1,15 @@
 # Release History for nim-ladybug
 
 ---
+## v0.9.0 [2026-03-24] Mahlon E. Smith <mahlon@martini.nu>
+
+Enhancement:
+
+- Add transaction helper functions.
+- Add `LbugTransactionError` exception type for transaction errors.
+
+
+---
 ## v0.8.3 [2026-03-03] Mahlon E. Smith <mahlon@martini.nu>
 
 Update to Ladybug v0.15.1.  No other changes.

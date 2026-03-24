@@ -7,7 +7,7 @@ nimble.paths
 nimcache/*
 testresults/*
 testresults.html
-tests/*
+tests/*/*
 !tests/*/t_*.nim
 tmp/*
 

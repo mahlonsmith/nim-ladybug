@@ -53,9 +53,16 @@ type
         keys*: seq[ string ]
     LbugStructValue* = ref LbugStructValueObj
 
-    LbugException*      = object of CatchableError
-    LbugQueryError*     = object of LbugException
-    LbugIndexError*     = object of LbugException
-    LbugIterationError* = object of LbugException
-    LbugTypeError*      = object of LbugException
+    LbugTransactionObj = object
+        conn*:     LbugConnection
+        readOnly*: bool
+        active* = false
+    LbugTransaction* = ref LbugTransactionObj
+
+    LbugException*        = object of CatchableError
+    LbugQueryError*       = object of LbugException
+    LbugIndexError*       = object of LbugException
+    LbugIterationError*   = object of LbugException
+    LbugTypeError*        = object of LbugException
+    LbugTransactionError* = object of LbugException
 

@@ -48,6 +48,7 @@ October of 2025.  Previous versions used a "Kuzu" namespace.
 | v0.12.2                 | v0.8.0                      |
 | v0.13.0                 | v0.8.1                      |
 | v0.14.1                 | v0.8.2                      |
+| v0.15.0                 | v0.8.3                      |
 
 
 You can use the `lbugVersionCompatible()` function (along with the
@@ -328,6 +329,80 @@ for pair in res.column_names.zip( res.column_types ):
   # ("e.thing", LBUG_UUID)
   # ("e.created", LBUG_DATE)
   # ("e.activity", LBUG_TIMESTAMP)
+```
+
+
+## Transactions
+
+Ladybug supports explicit transactions for ACID compliance. Every query is
+automatically wrapped in a transaction, but you can also manage transactions
+manually for batch operations or to ensure data integrity.
+
+### Manual Transaction Lifecycle
+
+Begin a transaction, execute queries, and then commit or rollback:
+
+```nim
+var txn = conn.beginTransaction()
+
+discard conn.query("""CREATE (p:Person {name: 'Alice'})""")
+discard conn.query("""CREATE (p:Person {name: 'Bob'})""")
+
+txn.commit() # Data persists
+
+# Or rollback to discard changes:
+# txn.rollback()
+```
+
+### Read-Only Transactions
+
+For read-heavy workloads, use `beginTransaction( readOnly = true )` to start a
+read-only transaction. This ensures the database doesn't change during your
+read:
+
+```nim
+var txn = conn.beginTransaction( readOnly = true )
+let res = conn.query("MATCH (p:Person) RETURN p.name")
+for row in res:
+    echo row
+txn.commit()
+```
+
+### Transaction State
+
+You can check if a transaction is still active:
+
+```nim
+var txn = conn.beginTransaction()
+if txn.isActive:
+    echo "Transaction is active!"
+```
+
+
+### Transactions in a block
+
+For easy transaction management, use the `withTransaction` template. It
+automatically commits on success or rolls back if an exception occurs:
+
+```nim
+conn.withTransaction( readOnly = false ):
+    discard conn.query("""CREATE (p:Person {name: 'Alice'})""")
+    discard conn.query("""CREATE (p:Person {name: 'Bob'})""")
+# Automatically commits when the block exits successfully
+```
+
+If an exception is raised within the block, the transaction is automatically
+rolled back:
+
+```nim
+try:
+    conn.withTransaction:
+        discard conn.query("""CREATE (p:Person {name: 'Alice'})""")
+        raise newException( OSError, "kaboom!" )
+except OSError:
+    discard
+# Transaction was rolled back, Alice was not persisted
+
 ```
 
 ## Reading Results
