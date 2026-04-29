@@ -1,6 +1,11 @@
 # Release History for nim-ladybug
 
 ---
+## v0.9.1 [2026-04-28] Mahlon E. Smith <mahlon@martini.nu>
+
+Update to Ladybug v0.16.0.  No other changes.
+
+
 ## v0.9.0 [2026-03-24] Mahlon E. Smith <mahlon@martini.nu>
 
 Enhancement:

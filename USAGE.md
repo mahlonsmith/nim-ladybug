@@ -49,6 +49,7 @@ October of 2025.  Previous versions used a "Kuzu" namespace.
 | v0.13.0                 | v0.8.1                      |
 | v0.14.1                 | v0.8.2                      |
 | v0.15.0                 | v0.8.3                      |
+| v0.16.0                 | v0.9.0                      |
 
 
 You can use the `lbugVersionCompatible()` function (along with the
@@ -483,8 +484,8 @@ for row in query:
   # 2
   # 3
 
-for set in query.sets:
-  for row in set:
+for remaining_set in query.sets:
+  for row in remaining_set:
     echo row
     # 4
     # 5
