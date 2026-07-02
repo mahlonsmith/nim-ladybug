@@ -27,9 +27,18 @@ const FILES  = @[ "name.basics", "title.basics", "title.principals" ]
 
 var knownFor: seq[ tuple[ aid: string, mids: seq[string] ] ] = @[]
 
+#
+# Download all sources.
+#
+for file in FILES:
+    let tsvgz = &"{file}.tsv.gz"
+
+    if not tsvgz.fileExists:
+        echo &"Downloading file: {file}..."
+        discard execShellCmd &"wget {SOURCE}/{tsvgz}"
 
 #
-# Prep everything!
+# Parse tsvs into csvs with the expected columns.
 #
 for file in FILES:
     var c     = 0
@@ -39,10 +48,6 @@ for file in FILES:
     if csv.fileExists:
         echo &"Skipping {file}, csv already exists."
         continue
-
-    if not tsvgz.fileExists:
-        echo &"Downloading file: {file}..."
-        discard execShellCmd &"wget {SOURCE}/{tsvgz}"
 
     let tsv_stream = newGzFileStream( tsvgz )
     let csv_file = open( &"{file}.csv", fmWrite )
@@ -118,30 +123,36 @@ for file in FILES:
     csv_file.close()
     stderr.write( "\n" )
 
-let known_file = open( "known.principals.csv", fmWrite )
-known_file.write( "aid,mid\n" )
-for known in knownFor:
-    for mid in known.mids:
-        known_file.write &"{known.aid},{mid}\n"
-known_file.close()
+#
+# Add the "known for" connections
+#
+let known = "known.principals.csv"
+if not known.fileExists:
+    let known_file = open( known, fmWrite )
+    known_file.write( "aid,mid\n" )
+    for known in knownFor:
+        for mid in known.mids:
+            known_file.write &"{known.aid},{mid}\n"
+    known_file.close()
 
 
 #
 # Ok, now import into a fresh ladybug database.
 #
 
-if not DB.dirExists:
+if not DB.fileExists:
     var db   = newLbugDatabase( DB )
     var conn = db.connect()
     var duration = 0
 
+        # """CREATE NODE TABLE Meta (id SERIAL PRIMARY KEY, createdAt DATE)""",
     for schema in @[
-        """CREATE NODE TABLE Meta (id SERIAL PRIMARY KEY, createdAt DATE)""",
         """CREATE NODE TABLE Actor (actorId INT64, name STRING, birthYear UINT16, deathYear UINT16, PRIMARY KEY (actorId))""",
         """CREATE NODE TABLE Movie (movieId INT64, title STRING, year UINT16, durationMins INT, PRIMARY KEY (movieId))""",
         """CREATE REL TABLE ActedIn (FROM Actor TO Movie)"""
     ]:
         var q = conn.query( schema )
+        echo schema
         duration += q.execution_time.int
 
     echo &"Created database schema in {duration}ms."
@@ -161,8 +172,8 @@ if not DB.dirExists:
     discard conn.query &"""CREATE ( m:Meta {{createdAt: "{date}"}} )"""
 
     # Full text index for actor names.
-    discard conn.query "INSTALL FTS; LOAD EXTENSION FTS;"
-    discard conn.query "CALL CREATE_FTS_INDEX( 'Actor', 'actor_name_idx', ['name'] )"
+    # discard conn.query "INSTALL FTS; LOAD EXTENSION FTS;"
+    # discard conn.query "CALL CREATE_FTS_INDEX( 'Actor', 'actor_name_idx', ['name'] )"
     echo &"Imported data in {duration / 1000}s."
     echo "Done!"
 

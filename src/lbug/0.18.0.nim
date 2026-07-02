@@ -1,9 +1,9 @@
 
 {.warning[UnusedImport]: off.}
 {.hint[XDeclaredButNotUsed]: off.}
-from macros import hint, warning, newLit, getSize
+from std / macros import hint, warning, newLit, getSize
 
-from os import parentDir
+from std / os import parentDir
 
 when not declared(ownSizeOf):
   macro ownSizeof(x: typed): untyped =
@@ -71,68 +71,69 @@ type
     throw_on_wal_replay_failure*: bool
     enable_checksums*: bool
     enable_multi_writes*: bool
-  lbug_system_config_587203004 = struct_lbug_system_config_587203003 ## Generated based on /usr/include/lbug.h:147:3
+    enable_default_hash_index*: bool
+  lbug_system_config_587203004 = struct_lbug_system_config_587203003 ## Generated based on /usr/include/lbug.h:149:3
   struct_lbug_database_587203006 {.pure, inheritable, bycopy.} = object
-    internal_database*: pointer ## Generated based on /usr/include/lbug.h:152:9
-  lbug_database_587203008 = struct_lbug_database_587203007 ## Generated based on /usr/include/lbug.h:154:3
+    internal_database*: pointer ## Generated based on /usr/include/lbug.h:154:9
+  lbug_database_587203008 = struct_lbug_database_587203007 ## Generated based on /usr/include/lbug.h:156:3
   struct_lbug_connection_587203010 {.pure, inheritable, bycopy.} = object
-    internal_connection*: pointer ## Generated based on /usr/include/lbug.h:161:9
-  lbug_connection_587203012 = struct_lbug_connection_587203011 ## Generated based on /usr/include/lbug.h:163:3
+    internal_connection*: pointer ## Generated based on /usr/include/lbug.h:163:9
+  lbug_connection_587203012 = struct_lbug_connection_587203011 ## Generated based on /usr/include/lbug.h:165:3
   struct_lbug_prepared_statement_587203014 {.pure, inheritable, bycopy.} = object
-    internal_prepared_statement*: pointer ## Generated based on /usr/include/lbug.h:169:9
+    internal_prepared_statement*: pointer ## Generated based on /usr/include/lbug.h:171:9
     internal_bound_values*: pointer
-  lbug_prepared_statement_587203016 = struct_lbug_prepared_statement_587203015 ## Generated based on /usr/include/lbug.h:172:3
+  lbug_prepared_statement_587203016 = struct_lbug_prepared_statement_587203015 ## Generated based on /usr/include/lbug.h:174:3
   struct_lbug_query_result_587203018 {.pure, inheritable, bycopy.} = object
-    internal_query_result*: pointer ## Generated based on /usr/include/lbug.h:177:9
+    internal_query_result*: pointer ## Generated based on /usr/include/lbug.h:179:9
     internal_is_owned_by_cpp*: bool
-  lbug_query_result_587203020 = struct_lbug_query_result_587203019 ## Generated based on /usr/include/lbug.h:180:3
+  lbug_query_result_587203020 = struct_lbug_query_result_587203019 ## Generated based on /usr/include/lbug.h:182:3
   struct_lbug_flat_tuple_587203022 {.pure, inheritable, bycopy.} = object
-    internal_flat_tuple*: pointer ## Generated based on /usr/include/lbug.h:185:9
+    internal_flat_tuple*: pointer ## Generated based on /usr/include/lbug.h:187:9
     internal_is_owned_by_cpp*: bool
-  lbug_flat_tuple_587203024 = struct_lbug_flat_tuple_587203023 ## Generated based on /usr/include/lbug.h:188:3
+  lbug_flat_tuple_587203024 = struct_lbug_flat_tuple_587203023 ## Generated based on /usr/include/lbug.h:190:3
   struct_lbug_logical_type_587203026 {.pure, inheritable, bycopy.} = object
-    internal_data_type*: pointer ## Generated based on /usr/include/lbug.h:193:9
-  lbug_logical_type_587203028 = struct_lbug_logical_type_587203027 ## Generated based on /usr/include/lbug.h:195:3
+    internal_data_type*: pointer ## Generated based on /usr/include/lbug.h:195:9
+  lbug_logical_type_587203028 = struct_lbug_logical_type_587203027 ## Generated based on /usr/include/lbug.h:197:3
   struct_lbug_value_587203030 {.pure, inheritable, bycopy.} = object
-    internal_value*: pointer ## Generated based on /usr/include/lbug.h:200:9
+    internal_value*: pointer ## Generated based on /usr/include/lbug.h:202:9
     internal_is_owned_by_cpp*: bool
-  lbug_value_587203032 = struct_lbug_value_587203031 ## Generated based on /usr/include/lbug.h:203:3
+  lbug_value_587203032 = struct_lbug_value_587203031 ## Generated based on /usr/include/lbug.h:205:3
   struct_lbug_internal_id_t_587203034 {.pure, inheritable, bycopy.} = object
-    table_id*: uint64        ## Generated based on /usr/include/lbug.h:208:9
+    table_id*: uint64        ## Generated based on /usr/include/lbug.h:210:9
     offset*: uint64
-  lbug_internal_id_t_587203036 = struct_lbug_internal_id_t_587203035 ## Generated based on /usr/include/lbug.h:211:3
+  lbug_internal_id_t_587203036 = struct_lbug_internal_id_t_587203035 ## Generated based on /usr/include/lbug.h:213:3
   struct_lbug_date_t_587203038 {.pure, inheritable, bycopy.} = object
-    days*: int32             ## Generated based on /usr/include/lbug.h:216:9
-  lbug_date_t_587203040 = struct_lbug_date_t_587203039 ## Generated based on /usr/include/lbug.h:219:3
+    days*: int32             ## Generated based on /usr/include/lbug.h:218:9
+  lbug_date_t_587203040 = struct_lbug_date_t_587203039 ## Generated based on /usr/include/lbug.h:221:3
   struct_lbug_timestamp_ns_t_587203042 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/include/lbug.h:225:9
-  lbug_timestamp_ns_t_587203044 = struct_lbug_timestamp_ns_t_587203043 ## Generated based on /usr/include/lbug.h:228:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:227:9
+  lbug_timestamp_ns_t_587203044 = struct_lbug_timestamp_ns_t_587203043 ## Generated based on /usr/include/lbug.h:230:3
   struct_lbug_timestamp_ms_t_587203046 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/include/lbug.h:234:9
-  lbug_timestamp_ms_t_587203048 = struct_lbug_timestamp_ms_t_587203047 ## Generated based on /usr/include/lbug.h:237:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:236:9
+  lbug_timestamp_ms_t_587203048 = struct_lbug_timestamp_ms_t_587203047 ## Generated based on /usr/include/lbug.h:239:3
   struct_lbug_timestamp_sec_t_587203050 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/include/lbug.h:243:9
-  lbug_timestamp_sec_t_587203052 = struct_lbug_timestamp_sec_t_587203051 ## Generated based on /usr/include/lbug.h:246:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:245:9
+  lbug_timestamp_sec_t_587203052 = struct_lbug_timestamp_sec_t_587203051 ## Generated based on /usr/include/lbug.h:248:3
   struct_lbug_timestamp_tz_t_587203054 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/include/lbug.h:252:9
-  lbug_timestamp_tz_t_587203056 = struct_lbug_timestamp_tz_t_587203055 ## Generated based on /usr/include/lbug.h:255:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:254:9
+  lbug_timestamp_tz_t_587203056 = struct_lbug_timestamp_tz_t_587203055 ## Generated based on /usr/include/lbug.h:257:3
   struct_lbug_timestamp_t_587203058 {.pure, inheritable, bycopy.} = object
-    value*: int64            ## Generated based on /usr/include/lbug.h:261:9
-  lbug_timestamp_t_587203060 = struct_lbug_timestamp_t_587203059 ## Generated based on /usr/include/lbug.h:264:3
+    value*: int64            ## Generated based on /usr/include/lbug.h:263:9
+  lbug_timestamp_t_587203060 = struct_lbug_timestamp_t_587203059 ## Generated based on /usr/include/lbug.h:266:3
   struct_lbug_interval_t_587203062 {.pure, inheritable, bycopy.} = object
-    months*: int32           ## Generated based on /usr/include/lbug.h:269:9
+    months*: int32           ## Generated based on /usr/include/lbug.h:271:9
     days*: int32
     micros*: int64
-  lbug_interval_t_587203064 = struct_lbug_interval_t_587203063 ## Generated based on /usr/include/lbug.h:273:3
+  lbug_interval_t_587203064 = struct_lbug_interval_t_587203063 ## Generated based on /usr/include/lbug.h:275:3
   struct_lbug_query_summary_587203066 {.pure, inheritable, bycopy.} = object
-    internal_query_summary*: pointer ## Generated based on /usr/include/lbug.h:279:9
-  lbug_query_summary_587203068 = struct_lbug_query_summary_587203067 ## Generated based on /usr/include/lbug.h:281:3
+    internal_query_summary*: pointer ## Generated based on /usr/include/lbug.h:281:9
+  lbug_query_summary_587203068 = struct_lbug_query_summary_587203067 ## Generated based on /usr/include/lbug.h:283:3
   struct_lbug_int128_t_587203070 {.pure, inheritable, bycopy.} = object
-    low*: uint64             ## Generated based on /usr/include/lbug.h:283:9
+    low*: uint64             ## Generated based on /usr/include/lbug.h:285:9
     high*: int64
-  lbug_int128_t_587203072 = struct_lbug_int128_t_587203071 ## Generated based on /usr/include/lbug.h:286:3
-  lbug_data_type_id_587203076 = enum_lbug_data_type_id_587203075 ## Generated based on /usr/include/lbug.h:331:3
-  lbug_state_587203080 = enum_lbug_state_587203079 ## Generated based on /usr/include/lbug.h:336:49
+  lbug_int128_t_587203072 = struct_lbug_int128_t_587203071 ## Generated based on /usr/include/lbug.h:288:3
+  lbug_data_type_id_587203076 = enum_lbug_data_type_id_587203075 ## Generated based on /usr/include/lbug.h:333:3
+  lbug_state_587203080 = enum_lbug_state_587203079 ## Generated based on /usr/include/lbug.h:338:49
   struct_tm_587203082 {.pure, inheritable, bycopy.} = object
     tm_sec*: cint            ## Generated based on /usr/include/bits/types/struct_tm.h:7:8
     tm_min*: cint
@@ -940,6 +941,48 @@ else:
   static :
     hint("Declaration of " & "lbug_connection_execute" &
         " already exists, not redeclaring")
+when not declared(lbug_connection_create_arrow_table):
+  proc lbug_connection_create_arrow_table*(connection: ptr lbug_connection_587203013;
+      table_name: cstring; schema: ptr struct_ArrowSchema_587202999;
+      arrays: ptr struct_ArrowArray_587203001; num_arrays: uint64;
+      out_query_result: ptr lbug_query_result_587203021): lbug_state_587203081 {.
+      cdecl, importc: "lbug_connection_create_arrow_table".}
+else:
+  static :
+    hint("Declaration of " & "lbug_connection_create_arrow_table" &
+        " already exists, not redeclaring")
+when not declared(lbug_connection_create_arrow_rel_table):
+  proc lbug_connection_create_arrow_rel_table*(connection: ptr lbug_connection_587203013;
+      table_name: cstring; src_table_name: cstring; dst_table_name: cstring;
+      schema: ptr struct_ArrowSchema_587202999; arrays: ptr struct_ArrowArray_587203001;
+      num_arrays: uint64; out_query_result: ptr lbug_query_result_587203021): lbug_state_587203081 {.
+      cdecl, importc: "lbug_connection_create_arrow_rel_table".}
+else:
+  static :
+    hint("Declaration of " & "lbug_connection_create_arrow_rel_table" &
+        " already exists, not redeclaring")
+when not declared(lbug_connection_create_arrow_rel_table_csr):
+  proc lbug_connection_create_arrow_rel_table_csr*(
+      connection: ptr lbug_connection_587203013; table_name: cstring;
+      src_table_name: cstring; dst_table_name: cstring;
+      indices_schema: ptr struct_ArrowSchema_587202999;
+      indices_arrays: ptr struct_ArrowArray_587203001;
+      num_indices_arrays: uint64; indptr_schema: ptr struct_ArrowSchema_587202999;
+      indptr_arrays: ptr struct_ArrowArray_587203001; num_indptr_arrays: uint64;
+      dst_col_name: cstring; out_query_result: ptr lbug_query_result_587203021): lbug_state_587203081 {.
+      cdecl, importc: "lbug_connection_create_arrow_rel_table_csr".}
+else:
+  static :
+    hint("Declaration of " & "lbug_connection_create_arrow_rel_table_csr" &
+        " already exists, not redeclaring")
+when not declared(lbug_connection_drop_arrow_table):
+  proc lbug_connection_drop_arrow_table*(connection: ptr lbug_connection_587203013;
+      table_name: cstring; out_query_result: ptr lbug_query_result_587203021): lbug_state_587203081 {.
+      cdecl, importc: "lbug_connection_drop_arrow_table".}
+else:
+  static :
+    hint("Declaration of " & "lbug_connection_drop_arrow_table" &
+        " already exists, not redeclaring")
 when not declared(lbug_connection_interrupt):
   proc lbug_connection_interrupt*(connection: ptr lbug_connection_587203013): void {.
       cdecl, importc: "lbug_connection_interrupt".}
@@ -969,6 +1012,14 @@ when not declared(lbug_prepared_statement_is_success):
 else:
   static :
     hint("Declaration of " & "lbug_prepared_statement_is_success" &
+        " already exists, not redeclaring")
+when not declared(lbug_prepared_statement_is_read_only):
+  proc lbug_prepared_statement_is_read_only*(
+      prepared_statement: ptr lbug_prepared_statement_587203017): bool {.cdecl,
+      importc: "lbug_prepared_statement_is_read_only".}
+else:
+  static :
+    hint("Declaration of " & "lbug_prepared_statement_is_read_only" &
         " already exists, not redeclaring")
 when not declared(lbug_prepared_statement_get_error_message):
   proc lbug_prepared_statement_get_error_message*(
@@ -1548,6 +1599,13 @@ when not declared(lbug_value_create_string):
 else:
   static :
     hint("Declaration of " & "lbug_value_create_string" &
+        " already exists, not redeclaring")
+when not declared(lbug_value_create_json):
+  proc lbug_value_create_json*(val_private: cstring): ptr lbug_value_587203033 {.
+      cdecl, importc: "lbug_value_create_json".}
+else:
+  static :
+    hint("Declaration of " & "lbug_value_create_json" &
         " already exists, not redeclaring")
 when not declared(lbug_value_create_uuid):
   proc lbug_value_create_uuid*(val_private: cstring): ptr lbug_value_587203033 {.

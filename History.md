@@ -1,6 +1,20 @@
 # Release History for nim-ladybug
 
 ---
+## v0.10.1 [2026-07-08] Mahlon E. Smith <mahlon@martini.nu>
+
+Bugfix:
+
+- Some configuration values were not included since the 0.16.0 release.
+  These could adversely affect various database behaviors:
+
+  - throw_on_wal_replay_failure
+  - enable_checksums
+  - enable_multi_writes
+  - enable_default_hash_index
+
+
+---
 ## v0.10.0 [2026-07-01] Mahlon E. Smith <mahlon@martini.nu>
 
 Update for Ladybug v0.18.0.  No other changes.
