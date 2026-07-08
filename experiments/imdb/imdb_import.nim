@@ -145,8 +145,8 @@ if not DB.fileExists:
     var conn = db.connect()
     var duration = 0
 
-        # """CREATE NODE TABLE Meta (id SERIAL PRIMARY KEY, createdAt DATE)""",
     for schema in @[
+        """CREATE NODE TABLE Meta (id SERIAL PRIMARY KEY, createdAt DATE)""",
         """CREATE NODE TABLE Actor (actorId INT64, name STRING, birthYear UINT16, deathYear UINT16, PRIMARY KEY (actorId))""",
         """CREATE NODE TABLE Movie (movieId INT64, title STRING, year UINT16, durationMins INT, PRIMARY KEY (movieId))""",
         """CREATE REL TABLE ActedIn (FROM Actor TO Movie)"""
