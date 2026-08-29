@@ -1,12 +1,12 @@
 # vim: set et sta sw=4 ts=4 :
 
-version     = "0.10.2"
+version     = "0.11.0"
 author      = "Mahlon E. Smith"
 description = "Ladybug is an embedded graph database built for query speed and scalability."
 license     = "BSD-3-Clause"
 srcDir      = "src"
 
-requires "nim ^= 2.0.0"
+requires "nim >= 2.2.10"
 
 # Development dependencies.
 #requires "futhark ^= 0.15.0"

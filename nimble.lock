@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "packages": {
+    "nim": {
+      "version": "2.2.10",
+      "vcsRevision": "9fe2137fa2f3f66cf5a44f357d461829ac9e20c4",
+      "url": "https://github.com/nim-lang/Nim.git",
+      "downloadMethod": "git",
+      "dependencies": [],
+      "checksums": {
+        "sha1": "17ec440fdb89f8903db29a17898af590087d2b64"
+      }
+    },
+    "termstyle": {
+      "version": "0.1.0",
+      "vcsRevision": "eefd9f17071df2b8c13e18537cd799acd7f41501",
+      "url": "https://github.com/PMunch/termstyle",
+      "downloadMethod": "git",
+      "dependencies": [
+        "nim"
+      ],
+      "checksums": {
+        "sha1": "4641c9f9e587d5cf04ccd3ce0bf1ef0263a16299"
+      }
+    },
+    "zip": {
+      "version": "0.3.1",
+      "vcsRevision": "bdc5783fefc1afb8eb622ff13d464a832ce1d507",
+      "url": "https://github.com/nim-lang/zip",
+      "downloadMethod": "git",
+      "dependencies": [
+        "nim"
+      ],
+      "checksums": {
+        "sha1": "eb2a8ec6c7e9844f27b3900cd994e46c8bce60e6"
+      }
+    },
+    "nimbleutils": {
+      "version": "0.3.3",
+      "vcsRevision": "84c78351486950a4d043f737be64bc7d26cc7bf9",
+      "url": "https://github.com/PMunch/nimbleutils",
+      "downloadMethod": "git",
+      "dependencies": [
+        "nim"
+      ],
+      "checksums": {
+        "sha1": "9cce152f371ed2277db0bb5853dfe7543c38ac66"
+      }
+    },
+    "macroutils": {
+      "version": "1.2.0",
+      "vcsRevision": "b460c6804c97df8cfdc80c308b574ae90b30ac61",
+      "url": "https://github.com/PMunch/macroutils",
+      "downloadMethod": "git",
+      "dependencies": [
+        "nim"
+      ],
+      "checksums": {
+        "sha1": "1759c705ba1fe48426ee7ca2d0c7fa265e91806b"
+      }
+    },
+    "futhark": {
+      "version": "0.16.0",
+      "vcsRevision": "52e8794e82484e3aceebaefcb8eebc68d0d29e54",
+      "url": "https://github.com/PMunch/futhark",
+      "downloadMethod": "git",
+      "dependencies": [
+        "nim",
+        "termstyle",
+        "macroutils",
+        "nimbleutils"
+      ],
+      "checksums": {
+        "sha1": "a0a91918248919a92474c80c16cc238dc37e7b31"
+      }
+    }
+  },
+  "tasks": {}
+}
