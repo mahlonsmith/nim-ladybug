@@ -39,7 +39,7 @@ For more information about Ladybug itself, see its
 
     $ nimble install ladybug
 
-The current version of this library is built for Ladybug v0.20.0.
+The current version of this library is built for Ladybug v0.22.0.
 
 
 ## Usage
